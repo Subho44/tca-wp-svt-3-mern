@@ -30,4 +30,29 @@ function addcourse(course) {
 function sc(course) {
     return courses.includes(course);
 }
-module.exports = { login, tp , rc,addcourse,sc};
+
+//discount
+function dc(price, dis) {
+    return price - (price * dis) / 100;
+}
+
+//arrow function
+const x = (price, qty) => price * qty; // multi para
+const m = (msg) => "hi all okk";  //singel para
+
+//spread operator
+const a1 = ["a", "b", "c"];
+const b1 = ["d", "e"];  // oldvalue= blank  + currentvalue=input  = updated value
+
+const z = [...a1, ...b1];
+
+const render = (x) => {
+    return z.map(a => (
+        console.log(a)
+        
+    ));
+    
+}
+
+
+module.exports = { login, tp, rc, addcourse, sc, dc, x, m , z,render};
