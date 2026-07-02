@@ -8,9 +8,10 @@ const courseroutes = require("./routes/courseRoutes");
 dotenv.config();
 
 const app = express();
+app.use(express.json());
 app.use(cors());
 connectdb();
-app.use("/api/course", courseroutes);
+app.use("/api/courses", courseroutes);
 app.get('/', (req, res) => {
     res.send("api is working");
 });
