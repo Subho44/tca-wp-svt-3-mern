@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Viewcourses from "./Viewcourses";
 
 const Addcourse = () => {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ const Addcourse = () => {
 
         <button type="submit">Add Course</button>
       </form>
+      
     </div>
   );
 };
