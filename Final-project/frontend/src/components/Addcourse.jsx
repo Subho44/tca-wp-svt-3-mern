@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Viewcourses from "./Viewcourses";
 
 const Addcourse = () => {
   const navigate = useNavigate();
@@ -23,7 +22,6 @@ const Addcourse = () => {
 
     try {
       await axios.post("http://localhost:5500/api/courses", course);
-
       alert("Course added successfully");
       navigate("/view");
     } catch (error) {
@@ -33,35 +31,64 @@ const Addcourse = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={hs}>
-        <label>Title:</label>
-        <input
-          type="text"
-          name="title"
-          value={course.title}
-          placeholder="Enter title"
-          onChange={hc}
-          required
-        />
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-cyan-950 flex items-center justify-center px-4 py-10 relative overflow-hidden">
+      <div className="absolute w-72 h-72 bg-cyan-500 rounded-full blur-3xl opacity-20 top-10 left-10 animate-pulse"></div>
+      <div className="absolute w-72 h-72 bg-purple-500 rounded-full blur-3xl opacity-20 bottom-10 right-10 animate-pulse"></div>
 
-        <br />
+      <div className="relative w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-8 animate-fadeIn">
+        <div className="text-center mb-8">
+          <span className="inline-block px-4 py-2 rounded-full bg-cyan-500/20 text-cyan-300 text-sm font-semibold mb-4">
+            Course Management
+          </span>
 
-        <label>Price:</label>
-        <input
-          type="number"
-          name="price"
-          value={course.price}
-          placeholder="Enter price"
-          onChange={hc}
-          required
-        />
+          <h1 className="text-3xl md:text-4xl font-extrabold text-white">
+            Add New Course
+          </h1>
 
-        <br />
+          <p className="text-gray-300 mt-3">
+            Enter course details and save it easily.
+          </p>
+        </div>
 
-        <button type="submit">Add Course</button>
-      </form>
-      
+        <form onSubmit={hs} className="space-y-5">
+          <div>
+            <label className="block text-gray-200 font-medium mb-2">
+              Course Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              value={course.title}
+              placeholder="Enter course title"
+              onChange={hc}
+              required
+              className="w-full px-4 py-3 rounded-xl bg-white/90 text-slate-800 outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-200 font-medium mb-2">
+              Course Price
+            </label>
+            <input
+              type="number"
+              name="price"
+              value={course.price}
+              placeholder="Enter course price"
+              onChange={hc}
+              required
+              className="w-full px-4 py-3 rounded-xl bg-white/90 text-slate-800 outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-cyan-500 text-white py-3 rounded-xl font-bold hover:bg-cyan-400 hover:scale-105 transition-all duration-300 shadow-lg"
+          >
+            Add Course
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
