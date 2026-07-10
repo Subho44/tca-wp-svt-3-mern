@@ -72,7 +72,13 @@ const Viewcourses = () => {
                   <div className="w-16 h-16 rounded-full bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-cyan-300 text-2xl font-bold mb-5">
                     📘
                   </div>
-
+                  <img
+                    src={`http://localhost:5500/uploads/${x.image}`}
+                    alt="img"
+                    className="w-full h-52 object-cover"
+                  
+                  
+                  />
                   <h3 className="text-2xl font-bold text-white mb-3">
                     {x.title}
                   </h3>

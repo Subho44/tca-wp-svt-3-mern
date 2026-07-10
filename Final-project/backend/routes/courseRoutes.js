@@ -1,10 +1,26 @@
 const express = require("express");
 const router = express.Router();
 const Course = require("../models/Course");
+const multer = require("multer");
+
+
+
+//file storage
+const storage = multer.diskStorage({
+    destination: "uploads/",
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + "_" + file.originalname);
+    },
+});
+const upload = multer({ storage });
 
 //data insert
-router.post('/', async (req, res) => {
-    const user = await Course.create(req.body);
+router.post('/', upload.single("image"), async (req, res) => {
+    const user = await Course.create({
+        title: req.body.title,
+        price: req.body.price,
+        image:req.file.filename,
+    });
     res.json(user);
 });
 

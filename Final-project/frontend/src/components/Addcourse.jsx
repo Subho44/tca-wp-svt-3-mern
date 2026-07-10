@@ -5,23 +5,21 @@ import axios from "axios";
 const Addcourse = () => {
   const navigate = useNavigate();
 
-  const [course, setCourse] = useState({
-    title: "",
-    price: "",
-  });
+  const [title, setTitle] = useState("");
+   const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
 
-  const hc = (e) => {
-    setCourse({
-      ...course,
-      [e.target.name]: e.target.value,
-    });
-  };
+  
 
   const hs = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("price", price);
+    formData.append("image", image);
 
     try {
-      await axios.post("http://localhost:5500/api/courses", course);
+      await axios.post("http://localhost:5500/api/courses",formData );
       alert("Course added successfully");
       navigate("/view");
     } catch (error) {
@@ -58,9 +56,9 @@ const Addcourse = () => {
             <input
               type="text"
               name="title"
-              value={course.title}
+              value={title}
               placeholder="Enter course title"
-              onChange={hc}
+              onChange={(e) => setTitle(e.target.value)}
               required
               className="w-full px-4 py-3 rounded-xl bg-white/90 text-slate-800 outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300"
             />
@@ -73,14 +71,25 @@ const Addcourse = () => {
             <input
               type="number"
               name="price"
-              value={course.price}
+              value={price}
               placeholder="Enter course price"
-              onChange={hc}
+              onChange={(e) => setPrice(e.target.value)}
               required
               className="w-full px-4 py-3 rounded-xl bg-white/90 text-slate-800 outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300"
             />
           </div>
 
+          <div>
+            <label className="block text-gray-200 font-medium mb-2">
+              Course Image
+            </label>
+            <input
+              type="file"
+              onChange={(e) => setImage(e.target.files[0])}
+              required
+              className="w-full border rounded-xl mb-4"
+            />
+          </div>
           <button
             type="submit"
             className="w-full bg-cyan-500 text-white py-3 rounded-xl font-bold hover:bg-cyan-400 hover:scale-105 transition-all duration-300 shadow-lg"
