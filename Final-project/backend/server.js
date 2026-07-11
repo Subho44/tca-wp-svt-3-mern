@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const connectdb = require("./config/db");
 const courseroutes = require("./routes/courseRoutes");
 const userroutes = require("./routes/userRoutes");
-
+const chatroutes = require("./routes/chatRoutes");
 
 
 dotenv.config();
@@ -18,6 +18,7 @@ app.use(cors());
 connectdb();
 app.use("/api/courses", courseroutes);
 app.use("/api/auth", userroutes);
+app.use("/api/chat", chatroutes);
 app.get('/', (req, res) => {
     res.send("api is working");
 });
